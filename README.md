@@ -36,13 +36,3 @@ The File Storage Server acts as our datacenter. Because our project focuses on t
 **Client Application**
 
 The Client Application is a command line interface (CLI) that will be explicitly invoked by the user to perform syncing operations (split into two operations, download and upload). These processes operate in the same two-step manner, as described above. First a table is sent to find which files need to be updated. Then each file is either uploaded or downloaded (depending on the operation being performed). This minimizes the number of requests for files that are already up-to-date. Initial communication will occur through the Origin Node, but we have opted to have the Client Application also communicate with the CDN nodes directly for file transfers. The Client Application will be capable of listening for requests from the CDN nodes when downloading. To avoid multiple CDN’s trying to communicate with a single Client Application, the Client Application will only have a single file request outstanding at once. Finally, Authentication can be handled here by having the client encrypt and decrypt files before transferring them. Given a strong enough encryption scheme the files will only be readable by the client who uploaded them, and the encryption process should not be a bottleneck, especially when compared to the network transfer time.
-
-
-Technologies used:
-
-1. C++
-2. casablanca (C++ REST framework): https://casablanca.codeplex.com/
-
-Google Doc: https://docs.google.com/document/d/1vdE9084hsvU3WLp8chF8b2vXLoSgocfiD8iQCq24T-w/edit
-
-Google PPT: https://docs.google.com/a/g.ucla.edu/presentation/d/1G8iBTZke0ICHwlI0blQ34HTgESA0paf6LCjBpROqnUs/edit?usp=sharing
